@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jaeger Tracing PoC</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>PoC Jaeger Distributed Tracing</h1>
+      <button id="sendRequestBtn">Kirim Request ke Backend</button>
+      <p id="responseLog">Klik tombol di atas untuk memulai trace...</p>
+    </div>
+
+    <script>
+      document
+        .getElementById("sendRequestBtn")
+        .addEventListener("click", async () => {
+          const responseLog = document.getElementById("responseLog");
+          responseLog.innerText = "Mengirim data ke Golang...";
+
+          try {
+            const response = await fetch("http://localhost:8085/api/data", {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+
+            const data = await response.json();
+            responseLog.innerText = `Respon Backend: ${data.message} (Trace sukses direkam!)`;
+          } catch (error) {
+            responseLog.innerText = "Gagal menghubungi backend.";
+            console.error(error);
+          }
+        });
+    </script>
+  </body>
+</html>
