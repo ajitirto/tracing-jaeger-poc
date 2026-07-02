@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger-poc
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+        # Mengizinkan frontend dari origin mana pun (termasuk localhost server Anda) mengirim trace ke Jaeger
+      - COLLECTOR_OTLP_HTTP_CORS_ALLOWED_ORIGINS="*"
+    ports:
+      - "16686:16686" # Jaeger UI (Buka di browser)
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver (Digunakan oleh Go & JS)
