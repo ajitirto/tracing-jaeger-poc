@@ -5,7 +5,7 @@ Project ini adalah *Proof of Concept* (PoC) sederhana untuk mengimplementasikan 
 ## 🏗️ Struktur Folder
  
 ```text
-poc-jaeger-tracing/
+tracing-jaeger-poc/
 ├── frontend/
 │   ├── index.html       # Tampilan UI & Trigger HTTP Request
 │   └── style.css        # Styling dasar UI
@@ -64,9 +64,21 @@ Buka browser Anda dan akses `http://localhost:8080`.
 ## 📊 Cara Menguji Tracing
  
 1. Buka halaman frontend di browser (`http://localhost:8080` atau port Live Server Anda).
+
+![Langkah 1 - Halaman Frontend Browser](docs/frontend.png)
+
 2. Klik tombol **"Kirim Request ke Backend"** beberapa kali.
 3. Buka Dashboard UI Jaeger di alamat: `http://localhost:16686`.
+
+![Langkah 3 - Dashboard Jaeger UI](docs/jaeger.png)
+
 4. Pada panel pencarian di sebelah kiri:
    - Pilih dropdown **Service** → cari dan pilih `backend-service`.
    - Klik tombol **Find Traces** di bagian bawah panel tersebut.
+   
+![Langkah 4 - Panel Pencarian Jaeger](docs/backend-service.png)
+
 5. Klik salah satu baris trace hasil pencarian untuk melihat visualisasi detail eksekusi fungsi HTTP Handler hingga simulasi query database (*Query Database SQL*).
+
+![Langkah 5 - Visualisasi Detail Trace](docs/query.png)
+
